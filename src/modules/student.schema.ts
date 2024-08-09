@@ -1,12 +1,14 @@
 import { Schema, model, connect } from 'mongoose';
-import { Student } from './student/student.interface';
+import { Student, UserName } from './student/student.interface';
+
+const userNameSchema = new Schema<UserName>({
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
+});
 
 const studentSchema = new Schema<Student>({
   id: { type: String },
-  name: {
-    firstName: { type: String, required: true },
-    lastName: { type: String, required: true },
-  },
+  name: userNameSchema,
   gender: ['male', 'female'],
   dateOfBirth: { type: String },
   email: { type: String, required: true },
@@ -17,4 +19,8 @@ const studentSchema = new Schema<Student>({
   profileImage: { type: String, required: true },
   isActive: ['active', 'inActive'],
 });
- 
+
+
+// Export the Student model
+const StudentModel = model<Student>('Student', studentSchema);
+export default StudentModel;
