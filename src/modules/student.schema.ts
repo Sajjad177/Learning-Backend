@@ -23,4 +23,4 @@ const studentSchema = new Schema<Student>({
 
 // Export the Student model
 const StudentModel = model<Student>('Student', studentSchema);
-export default StudentModel;
+export default StudentModel; 
